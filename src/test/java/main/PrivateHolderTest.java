@@ -29,17 +29,21 @@ class PrivateHolderTest {
     @Test
     void test_addGreeting() {
         PrivateHolder holder = new PrivateHolder();
+        String[] greetings = holder.getGreetings();
+
         Method method = getClassMethod("addGreeting");
 
-        assertEquals(5, holder.getGreetings().length);
+        assertEquals(5, greetings.length);
 
         invokeMethod(holder, method, "Meow!");
-        assertEquals(6, holder.getGreetings().length);
-        assertEquals("Meow!", holder.getGreetings()[5]);
+        greetings = holder.getGreetings();
+        assertEquals(6, greetings.length);
+        assertEquals("Meow!", greetings[5]);
 
         invokeMethod(holder, method, "Welcome to Hell");
-        assertEquals(7, holder.getGreetings().length);
-        assertEquals("Welcome to Hell", holder.getGreetings()[6]);
+        greetings = holder.getGreetings();
+        assertEquals(7, greetings.length);
+        assertEquals("Welcome to Hell", greetings[6]);
     }
 
     /**
